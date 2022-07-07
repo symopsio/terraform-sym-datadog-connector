@@ -1,26 +1,36 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+  documentation:
     docker:
       - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: Install terraform-docs
+          command: GO111MODULE="on" go get github.com/terraform-docs/terraform-docs@latest
+      - run:
+          name: Configure github
+          command: |
+            git config user.email "infrastructure@symops.io"
+            git config user.name "infrastructure"
+      - run:
+          name: Run terraform docs
+          command: terraform-docs -c .terraform-docs.yml . > README.md
+      - run:
+          name: Check in documentation
+          command: |
+            git add README.md
+            git commit -m "[skip ci] Add auto-gen documentation."
+            git push https://infrastructure:${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  version: 2
+  build_and_release:
     jobs:
-      - say-hello
+      - documentation:
+          # filters:
+          #   branches:
+          #     only: main
