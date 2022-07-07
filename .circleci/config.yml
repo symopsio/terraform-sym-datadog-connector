@@ -19,6 +19,7 @@ jobs:
       - run:
           name: Run terraform docs
           command: terraform-docs markdown table --output-file README.md --output-mode inject .
+      - run:
           name: Check in documentation
           command: |
             git add README.md
