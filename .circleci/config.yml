@@ -23,7 +23,7 @@ jobs:
           name: Check in documentation
           command: |
             git add README.md
-            git commit -m "[skip ci] Add auto-gen documentation."
+            git commit --allow-empty -m "[skip ci] Add auto-gen documentation."
             git push https://infrastructure:${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
 
 workflows:
