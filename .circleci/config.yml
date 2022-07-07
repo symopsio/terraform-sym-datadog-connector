@@ -8,7 +8,7 @@ jobs:
       - image: circleci/node:latest
     steps:
       - checkout
-      - npm install
+      - run: npm install
       - run: npx semantic-release
   documentation:
     docker:
