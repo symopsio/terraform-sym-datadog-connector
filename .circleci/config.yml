@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   documentation:
     docker:
-      - image: cimg/base:stable
+      - image: circleci/golang
     steps:
       - checkout
       - setup_remote_docker:
