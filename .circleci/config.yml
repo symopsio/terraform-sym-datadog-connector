@@ -1,15 +1,14 @@
 version: 2.1
 
-orbs:
-  node: circleci/node@5.0.2
 
 
 jobs:
   release:
-    executor: node/default
+    docker:
+      - image: circleci/node:latest
     steps:
       - checkout
-      - node/install-packages
+      - npm install
       - run: npx semantic-release
   documentation:
     docker:
