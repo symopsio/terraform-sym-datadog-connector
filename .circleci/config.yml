@@ -1,6 +1,16 @@
 version: 2.1
 
+orbs:
+  node: circleci/node@5.0.2
+
+
 jobs:
+  release:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run: npx semantic-release
   documentation:
     docker:
       - image: circleci/golang
@@ -31,6 +41,9 @@ workflows:
   build_and_release:
     jobs:
       - documentation
-          # filters:
-          #   branches:
-          #     only: main
+          filters:
+            branches:
+              only: main
+      - release:
+          requires:
+            - documentation
