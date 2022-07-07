@@ -18,8 +18,7 @@ jobs:
             git config user.name "infrastructure"
       - run:
           name: Run terraform docs
-          command: terraform-docs -c .terraform-docs.yml . > README.md
-      - run:
+          command: terraform-docs markdown table --output-file README.md --output-mode inject .
           name: Check in documentation
           command: |
             git add README.md
