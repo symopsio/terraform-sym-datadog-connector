@@ -3,7 +3,7 @@ locals {
 }
 
 module "kinesis_firehose_connector" {
-  source = "terraform.symops.com/symopsio/kinesis-firehose-connector/sym"
+  source = "symopsio/kinesis-firehose-connector/sym"
 
   environment = var.environment
   name_prefix = var.name_prefix
