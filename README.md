@@ -1,5 +1,7 @@
 # datadog-connector
 
+test
+
 The `datadog-connector` module provisions a Kinesis Firehose which is configured to pipe logs to Datadog. It uses the `kinesis-firehose-connector` to create the Firehose's dependencies.
 
 To provide the Sym Runtime with access to the resources created in this `Connector`, use the `aws/kinesis-firehose` addon in the `runtime-connector` module.
