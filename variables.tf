@@ -10,7 +10,7 @@ variable "tags" {
 }
 
 variable "datadog_intake_url" {
-  description = "Intake url for Datadog to consume Kinesis Firehose messages"
+  description = "Intake url for Datadog to consume Kinesis Firehose messages. For EU Datadog, set to 'https://aws-kinesis-http-intake.logs.datadoghq.eu/v1/input'."
   type        = string
   default     = "https://aws-kinesis-http-intake.logs.datadoghq.com/v1/input"
 }

@@ -4,6 +4,8 @@ The `datadog-connector` module provisions a Kinesis Firehose which is configured
 
 To provide the Sym Runtime with access to the resources created in this `Connector`, use the `aws/kinesis-firehose` addon in the `runtime-connector` module.
 
+For EU Datadog, make sure to set the `datadog_intake_url` input to `https://aws-kinesis-http-intake.logs.datadoghq.eu/v1/input`!
+
 SECURITY NOTE: The `datadog_access_key` variable is [sensitive](https://learn.hashicorp.com/tutorials/terraform/sensitive-variables). Be sure to manage this value in an environment variable or a `tfvars` file that is excluded from version control. For example, `export TF_VAR_datadog_access_key="my-access-key"`.
 
 ```hcl
