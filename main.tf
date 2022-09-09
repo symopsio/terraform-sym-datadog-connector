@@ -24,6 +24,18 @@ resource "aws_kinesis_firehose_delivery_stream" "this" {
     name       = "Datadog"
     access_key = var.datadog_access_key
     role_arn   = module.kinesis_firehose_connector.firehose_role_arn
+
+    request_configuration {
+      content_encoding = "GZIP"
+
+      dynamic "common_attributes" {
+        for_each = local.tags
+        content {
+          name  = common_attributes.key
+          value = common_attributes.value
+        }
+      }
+    }
   }
 
   tags = local.tags
