@@ -4,7 +4,7 @@ locals {
 
 module "kinesis_firehose_connector" {
   source = "symopsio/kinesis-firehose-connector/sym"
-  version = ">= 1.0.0, < 2.0.0"
+  version = ">= 3.0.0, < 4.0.0"
 
   environment = var.environment
   name_prefix = var.name_prefix
