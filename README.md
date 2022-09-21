@@ -36,7 +36,7 @@ module "datadog_connector" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_kinesis_firehose_connector"></a> [kinesis\_firehose\_connector](#module\_kinesis\_firehose\_connector) | symopsio/kinesis-firehose-connector/sym | >= 1.0.0, < 2.0.0 |
+| <a name="module_kinesis_firehose_connector"></a> [kinesis\_firehose\_connector](#module\_kinesis\_firehose\_connector) | symopsio/kinesis-firehose-connector/sym | >= 3.0.0, < 4.0.0 |
 
 ## Resources
 
