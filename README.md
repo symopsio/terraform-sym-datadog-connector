@@ -1,3 +1,14 @@
+# Deprecation Warning
+The `symopsio/datadog-connector/sym` module is deprecated as of September 30, 2022. Please migrate to `symopsio/datadog-connector/aws`. This can be done in your module declarations by replacing the `symopsio/datadog-connector/sym` source argument with `symopsio/datadog-connector/aws`.
+
+```
+module "datadog_connector" {
+  source  = "symopsio/datadog-connector/aws"
+  version = ">= 2.0.0"
+  # insert the 2 required variables here
+}
+```
+
 # datadog-connector
 
 The `datadog-connector` module provisions a Kinesis Firehose which is configured to pipe logs to Datadog. It uses the `kinesis-firehose-connector` to create the Firehose's dependencies.
